@@ -1,9 +1,9 @@
 import request from 'request-promise-native'
 
-export default ({ isProduction, url, ...opt }) =>
+export default ({ isProduction, ...opt }) =>
   request({
-    ...opt,
-    url: `${
+    baseUrl: `${
       isProduction ? 'https://secure.payu.com' : 'https://secure.snd.payu.com'
-    }${url}`
+    }`,
+    ...opt,
   })

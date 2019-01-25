@@ -1,9 +1,8 @@
 import 'chai/register-should'
-import nock from 'nock'
+
+import nock, { mockAuthorize } from './server'
 
 import { authorize } from '../src'
-
-const BASE_API = 'https://secure.snd.payu.com'
 
 describe('authorize function', () => {
   afterEach(() => {
@@ -11,15 +10,7 @@ describe('authorize function', () => {
   })
 
   it('should return oauth token', async () => {
-    nock(BASE_API)
-      .post('/pl/standard/user/oauth/authorize')
-      .query(() => true)
-      .reply(200, {
-        access_token: '8f79c971-195e-43f5-bd83-ad2104414acc',
-        token_type: 'bearer',
-        expires_in: 43199,
-        grant_type: 'client_credentials'
-      })
+    mockAuthorize()
 
     const response = await authorize({
       clientId: '349114',

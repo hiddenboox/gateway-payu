@@ -3,7 +3,7 @@ import request from './helpers'
 export default async ({ isProduction, clientId, clientSecret, grantType }) => {
   try {
     const response = await request({
-      url: '/pl/standard/user/oauth/authorize',
+      uri: '/pl/standard/user/oauth/authorize',
       method: 'POST',
       json: true,
       qs: {

@@ -1,18 +1,19 @@
 import request from './helpers'
 
-export default async ({ isProduction, accessToken, order }) => {
+export default async ({ isProduction, accessToken, body }) => {
   try {
     return await request({
-      url: '/api/v2_1/orders',
+      uri: '/api/v2_1/orders',
       method: 'POST',
       json: true,
       headers: {
-        Authorization: `Bearer ${accessToken}`
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
       },
-      body: order,
-      isProduction
+      body,
+      isProduction,
     })
-  } catch (ex) {
-    console.error(ex.message)
+  } catch (response) {
+    return response.error
   }
 }
