@@ -1,8 +1,10 @@
 import 'chai/register-should'
+import nock from 'nock'
 
 import { authorize, order } from '../src'
-import nock, { mockAuthorize, mockOrder } from './server'
-import { clientId, clientSecret } from './config';
+import { mockAuthorize, mockOrder } from './server'
+
+const { PAYU_CLIENT_ID, PAYU_CLIENT_SECRET } = process.env
 
 describe('order flow', () => {
   afterEach(() => {
@@ -10,14 +12,14 @@ describe('order flow', () => {
   })
 
   it('should return order status', async () => {
-    if(clientId && clientSecret) {
+    if(PAYU_CLIENT_ID && PAYU_CLIENT_SECRET) {
       mockAuthorize()
       mockOrder()
     }
     const body = {
       notifyUrl: 'https://your.eshop.com/notify',
       customerIp: '127.0.0.1',
-      merchantPosId: clientId,
+      merchantPosId: PAYU_CLIENT_ID,
       description: 'RTV market',
       currencyCode: 'PLN',
       totalAmount: '15000',
@@ -37,8 +39,8 @@ describe('order flow', () => {
     }
 
     const { accessToken } = await authorize({
-      clientSecret,
-      clientId,
+      clientSecret: PAYU_CLIENT_SECRET,
+      clientId: PAYU_CLIENT_ID,
       grantType: 'client_credentials'
     })
     const response = await order({ accessToken, body })

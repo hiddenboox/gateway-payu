@@ -1,6 +1,7 @@
 import 'chai/register-should'
+import nock from 'nock'
 
-import nock, { mockOrder } from './server'
+import { mockOrder } from './server'
 
 import { order } from '../src'
 

@@ -1,6 +1,7 @@
 import 'chai/register-should'
+import nock from 'nock'
 
-import nock, { mockAuthorize } from './server'
+import { mockAuthorize } from './server'
 
 import { authorize } from '../src'
 
