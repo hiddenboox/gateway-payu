@@ -14,8 +14,8 @@ describe('order function', () => {
     mockOrder()
     
     const response = await order({
-      accessToken: '',
-      order: {}
+      accessToken: '1231=',
+      description: {}
     })
 
     response.should.have.property('redirectUri')

@@ -4,7 +4,7 @@ import nock from 'nock'
 import { authorize, order } from '../src'
 import { mockAuthorize, mockOrder } from './server'
 
-const { PAYU_CLIENT_ID, PAYU_CLIENT_SECRET } = process.env
+const { PAYU_CLIENT_ID, PAYU_CLIENT_SECRET, PAYU_CLIENT_NOTIFY_SITE_URL } = process.env
 
 describe('order flow', () => {
   afterEach(() => {
@@ -12,14 +12,11 @@ describe('order flow', () => {
   })
 
   it('should return order status', async () => {
-    if(PAYU_CLIENT_ID && PAYU_CLIENT_SECRET) {
-      mockAuthorize()
-      mockOrder()
-    }
-    const body = {
-      notifyUrl: 'https://your.eshop.com/notify',
+    mockAuthorize()
+    mockOrder()
+
+    const description = {
       customerIp: '127.0.0.1',
-      merchantPosId: PAYU_CLIENT_ID,
       description: 'RTV market',
       currencyCode: 'PLN',
       totalAmount: '15000',
@@ -43,7 +40,7 @@ describe('order flow', () => {
       clientId: PAYU_CLIENT_ID,
       grantType: 'client_credentials'
     })
-    const response = await order({ accessToken, body })
+    const response = await order({ accessToken, description })
     
     response.should.have.property('redirectUri')
     response.should.have.property('orderId')

@@ -1,10 +1,11 @@
 import request from './helpers'
+import { HttpVerb } from './consts';
 
 export default async ({ isProduction, clientId, clientSecret, grantType }) => {
   try {
     const response = await request({
       uri: '/pl/standard/user/oauth/authorize',
-      method: 'POST',
+      method: HttpVerb.POST,
       json: true,
       qs: {
         client_secret: clientSecret,
