@@ -1,8 +1,8 @@
 import nock from 'nock'
 
-const BASE_API = 'https://secure.snd.payu.com'
+import { Environment } from '../src/consts'
 
-export const mockAuthorize = () => nock(BASE_API)
+export const mockAuthorize = () => nock(Environment.SANDBOX)
     .post('/pl/standard/user/oauth/authorize')
     .query(() => true)
     .reply(200, {
@@ -12,7 +12,7 @@ export const mockAuthorize = () => nock(BASE_API)
         grant_type: 'client_credentials'
     })
 
-export const mockOrder = () => nock(BASE_API)
+export const mockOrder = () => nock(Environment.SANDBOX)
     .post('/api/v2_1/orders')
     .query(() => true)
     .reply(200, {

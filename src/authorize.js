@@ -1,19 +1,20 @@
-import request from './helpers'
-import { HttpVerb } from './consts';
+import { post } from './helpers'
+import { url } from './url'
 
-export default async ({ isProduction, clientId, clientSecret, grantType }) => {
+export default async ({ clientId, clientSecret, grantType }) => {
   try {
-    const response = await request({
-      uri: '/pl/standard/user/oauth/authorize',
-      method: HttpVerb.POST,
-      json: true,
-      qs: {
-        client_secret: clientSecret,
-        grant_type: grantType,
-        client_id: clientId
-      },
-      isProduction
-    })
+    const response = await post(
+      `${url}/pl/standard/user/oauth/authorize`,
+      null,
+      {
+        json: true,
+        params: {
+          client_secret: clientSecret,
+          grant_type: grantType,
+          client_id: clientId
+        }
+      }
+    )
 
     return {
       accessToken: response.access_token,

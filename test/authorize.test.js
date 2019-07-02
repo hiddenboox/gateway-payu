@@ -5,6 +5,8 @@ import { mockAuthorize } from './server'
 
 import { authorize } from '../src'
 
+const { PAYU_CLIENT_ID, PAYU_CLIENT_SECRET, PAYU_CLIENT_NOTIFY_SITE_URL } = process.env
+
 describe('authorize function', () => {
   afterEach(() => {
     nock.cleanAll()
@@ -14,10 +16,9 @@ describe('authorize function', () => {
     mockAuthorize()
 
     const response = await authorize({
-      clientId: '349114',
-      clientSecret: '0818f8affc213dee5ed10cc402821674',
+      clientSecret: PAYU_CLIENT_SECRET,
+      clientId: PAYU_CLIENT_ID,
       grantType: 'client_credentials',
-      isSandbox: true
     })
 
     response.should.have.property('accessToken')
