@@ -1,7 +1,7 @@
 import querystring from 'querystring'
 import https from 'https'
 import { URL } from 'url'
-import { HttpVerb } from './consts';
+import { HttpVerb } from './consts'
 
 export const request = ({ url, json, params, body, ...rest } = { method: 'GET', json: true }) => {
   const uri = new URL(`${url}${params ? '?' + querystring.stringify(params) : ''}`)
