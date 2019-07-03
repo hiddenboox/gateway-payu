@@ -8,6 +8,6 @@ export const HttpVerb = {
 }
 
 export const Environment = {
-    SANDBOX: 'secure.snd.payu.com',
-    PRODUCTION: 'secure.payu.com',
+    SANDBOX: 'https://secure.snd.payu.com',
+    PRODUCTION: 'https://secure.payu.com',
 }

@@ -1,10 +1,10 @@
 import { post } from './helpers'
-import { url } from './url'
+import { environment } from './env'
 
 export default async ({ clientId, clientSecret, grantType }) => {
   try {
     const response = await post(
-      `${url}/pl/standard/user/oauth/authorize`,
+      `${environment}/pl/standard/user/oauth/authorize`,
       null,
       {
         json: true,

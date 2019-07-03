@@ -2,7 +2,7 @@ import assert from 'assert'
 
 import { post } from './helpers'
 import { ContentType } from './consts'
-import { url } from './url'
+import { environment } from './env'
 
 const { PAYU_CLIENT_NOTIFY_SITE_URL, PAYU_CLIENT_ID } = process.env
 
@@ -12,7 +12,7 @@ export default async ({ accessToken, description }) => {
 
   try {
     return await post(
-      `${url}/api/v2_1/orders`,
+      `${environment}/api/v2_1/orders`,
       {
         notifyUrl: PAYU_CLIENT_NOTIFY_SITE_URL,
         merchantPosId: PAYU_CLIENT_ID,

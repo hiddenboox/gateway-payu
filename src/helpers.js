@@ -4,7 +4,7 @@ import { URL } from 'url'
 import { HttpVerb } from './consts';
 
 export const request = ({ url, json, params, body, ...rest } = { method: 'GET', json: true }) => {
-  const uri = new URL(`https://${url}${params ? '?' + querystring.stringify(params) : ''}`)
+  const uri = new URL(`${url}${params ? '?' + querystring.stringify(params) : ''}`)
   return new Promise((resolve, reject) => {
     const req = https.request({ host: uri.host, path: `${uri.pathname}${uri.search}`, ...rest }, (resp) => {
       let data = '';
