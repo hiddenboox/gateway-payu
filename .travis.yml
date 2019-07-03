@@ -1,11 +1,23 @@
 language: node_js
 node_js:
+  - '12'
   - '10'
+  - '8'
+
+cache:
+  directories:
+    - "$HOME/.npm"
+
+install:
+  - npm install
 
 jobs:
   include:
+    - stage: test
+      script: npm test
+    - stage: build
+      script: npm run build
     - stage: release
-      node_js: 10
       script: skip
       deploy:
         provider: script
