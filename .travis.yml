@@ -13,11 +13,11 @@ install:
 
 jobs:
   include:
-    - stage: test
-      script: npm test
     - stage: build
+      node_js: lts/*
       script: npm run build
     - stage: release
+      node_js: lts/*
       script: skip
       deploy:
         provider: script
