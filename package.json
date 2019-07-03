@@ -14,21 +14,6 @@
     "debug": "babel-node --inspect-brk ./src/index.js",
     "semantic-release": "semantic-release"
   },
-  "@pika/pack": {
-    "pipeline": [
-      [
-        "@pika/plugin-standard-pkg",
-        {
-          "exclude": [
-            "test/**/*"
-          ]
-        }
-      ],
-      [
-        "@pika/plugin-build-node"
-      ]
-    ]
-  },
   "keywords": [
     "payment",
     "gateway",
@@ -64,6 +49,6 @@
     "url": "https://github.com/hiddenboox/gateway-payu.git"
   },
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   }
 }
