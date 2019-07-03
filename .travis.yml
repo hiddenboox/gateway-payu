@@ -13,12 +13,9 @@ install:
 
 jobs:
   include:
-    - stage: build
-      node_js: lts/*
-      script: npm run build
     - stage: release
       node_js: lts/*
-      script: skip
+      script: npm run build
       deploy:
         provider: script
         skip_cleanup: true

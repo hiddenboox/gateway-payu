@@ -51,7 +51,9 @@ const request = ({ url: url$1, json, params, body, ...rest } = { method: 'GET', 
 };
 const post = (url, body, options = {}) => request({ url, body, ...options, ...{ method: HttpVerb.POST } });
 
-const environment = Environment[(process.env.PAYU_ENVIRONMENT ? process.env.PAYU_ENVIRONMENT : 'sandbox').toUpperCase()];
+const environment = Environment[(process.env.PAYU_ENVIRONMENT ? process.env.PAYU_ENVIRONMENT : 'sandbox').toUpperCase()]; 
+
+console.log('test');
 
 var authorize = async ({ clientId, clientSecret, grantType }) => {
   try {
