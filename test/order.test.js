@@ -15,7 +15,10 @@ describe('order function', () => {
     
     const response = await order({
       accessToken: '123131=',
-      description: {}
+      payment: {},
+      cart: {},
+      buyer: {},
+      products: [],
     })
 
     response.should.have.property('redirectUri')

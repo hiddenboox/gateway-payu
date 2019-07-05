@@ -15,24 +15,29 @@ describe('order flow', () => {
     mockAuthorize()
     mockOrder()
 
-    const description = {
+    const products = [
+      {
+        name: 'Wireless Mouse for Laptop',
+        unitPrice: '15000',
+        quantity: '1'
+      }
+    ]
+    
+    const buyer = {
+      email: 'john.doe@example.com',
+      phone: '654111654',
+      firstName: 'John',
+      lastName: 'Doe',
       customerIp: '127.0.0.1',
-      description: 'RTV market',
+    }
+
+    const payment = {
       currencyCode: 'PLN',
       totalAmount: '15000',
-      buyer: {
-        email: 'john.doe@example.com',
-        phone: '654111654',
-        firstName: 'John',
-        lastName: 'Doe'
-      },
-      products: [
-        {
-          name: 'Wireless Mouse for Laptop',
-          unitPrice: '15000',
-          quantity: '1'
-        }
-      ]
+    }
+
+    const cart = {
+      description: 'RTV market',
     }
 
     const { accessToken } = await authorize({
@@ -40,7 +45,7 @@ describe('order flow', () => {
       clientId: PAYU_CLIENT_ID,
       grantType: 'client_credentials'
     })
-    const response = await order({ accessToken, description })
+    const response = await order({ accessToken, payment, cart, buyer, products })
     
     response.should.have.property('redirectUri')
     response.should.have.property('orderId')

@@ -5,7 +5,7 @@ import { mockAuthorize } from './server'
 
 import { authorize } from '../src'
 
-const { PAYU_CLIENT_ID, PAYU_CLIENT_SECRET, PAYU_CLIENT_NOTIFY_SITE_URL } = process.env
+const { PAYU_CLIENT_ID, PAYU_CLIENT_SECRET } = process.env
 
 describe('authorize function', () => {
   afterEach(() => {
