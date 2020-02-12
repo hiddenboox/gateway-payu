@@ -2,9 +2,8 @@ import nock from 'nock'
 import assert from 'assert'
 import { expect } from 'chai'
 
-import { mockAuthorize } from './server'
-
-import { authorize } from '../src'
+import { mockAuthorize } from '../server'
+import { authorize, GrantType } from '../../src'
 
 const { PAYU_CLIENT_ID, PAYU_CLIENT_SECRET } = process.env
 
@@ -19,7 +18,7 @@ describe('authorize function', () => {
     const response = await authorize({
       clientSecret: PAYU_CLIENT_SECRET,
       clientId: PAYU_CLIENT_ID,
-      grantType: 'client_credentials',
+      grantType: GrantType.ClientCredentials
     })
 
     response.should.have.property('accessToken')
@@ -32,7 +31,13 @@ describe('authorize function', () => {
     try {
       await authorize()
     } catch (err) {
-      should.throw(() => { throw err }, assert.AssertionError, 'PAYU_CLIENT_ID should not be empty')
+      should.throw(
+        () => {
+          throw err
+        },
+        assert.AssertionError,
+        'PAYU_CLIENT_ID should not be empty'
+      )
     }
   })
 
@@ -40,7 +45,13 @@ describe('authorize function', () => {
     try {
       await authorize({ clientId: 2 })
     } catch (err) {
-      should.throw(() => { throw err }, assert.AssertionError, 'PAYU_CLIENT_SECRET should not be empty')
+      should.throw(
+        () => {
+          throw err
+        },
+        assert.AssertionError,
+        'PAYU_CLIENT_SECRET should not be empty'
+      )
     }
   })
 
@@ -48,7 +59,13 @@ describe('authorize function', () => {
     try {
       await authorize({ clientId: 2, clientSecret: 2 })
     } catch (err) {
-      should.throw(() => { throw err }, assert.AssertionError, 'grantType should not be empty')
+      should.throw(
+        () => {
+          throw err
+        },
+        assert.AssertionError,
+        'grantType should not be empty'
+      )
     }
   })
 })

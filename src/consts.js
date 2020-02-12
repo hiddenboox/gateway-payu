@@ -1,24 +1,27 @@
 export const ContentType = {
-    JSON: 'application/json'
+  JSON: 'application/json'
 }
 
 export const HEADERS = {
-    Authorization: 'Authorization',
-    'Content-Type': 'Content-Type'
+  Authorization: 'Authorization',
+  'Content-Type': 'Content-Type'
 }
 
 export const HttpVerb = {
-    POST: 'POST',
-    GET: 'GET',
+  POST: 'POST',
+  GET: 'GET'
 }
 
 export const EnvironmentName = {
-    SANDBOX: 'SANDBOX',
-    PRODUCTION: 'PRODUCTION',
+  SANDBOX: 'SANDBOX',
+  PRODUCTION: 'PRODUCTION'
 }
 
 export const Environment = {
-    [EnvironmentName.SANDBOX]: 'https://secure.snd.payu.com',
-    [EnvironmentName.PRODUCTION]: 'https://secure.payu.com',
+  [EnvironmentName.SANDBOX]: 'https://secure.snd.payu.com',
+  [EnvironmentName.PRODUCTION]: 'https://secure.payu.com'
 }
 
+export const GrantType = {
+  ClientCredentials: 'client_credentials'
+}
