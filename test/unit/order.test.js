@@ -1,8 +1,8 @@
 import nock from 'nock'
 
-import { mockOrder } from './server'
+import { mockOrder } from '../server'
 
-import { order } from '../src'
+import { order } from '../../src'
 
 describe('order function', () => {
   afterEach(() => {
@@ -11,13 +11,13 @@ describe('order function', () => {
 
   it('should return order status', async () => {
     mockOrder()
-    
+
     const response = await order({
       accessToken: '123131=',
       payment: {},
       cart: {},
       buyer: {},
-      products: [],
+      products: []
     })
 
     response.should.have.property('redirectUri')
