@@ -1,10 +1,9 @@
-import 'chai/register-should'
 import nock from 'nock'
 
 import { authorize, order } from '../src'
 import { mockAuthorize, mockOrder } from './server'
 
-const { PAYU_CLIENT_ID, PAYU_CLIENT_SECRET, PAYU_CLIENT_NOTIFY_SITE_URL } = process.env
+const { PAYU_CLIENT_ID, PAYU_CLIENT_SECRET } = process.env
 
 describe('order flow', () => {
   afterEach(() => {

@@ -1,7 +1,12 @@
-import { post } from './helpers'
+import { post } from './helpers/request'
 import { environment } from './env'
+import { required } from './helpers/validation'
 
-export default async ({ clientId, clientSecret, grantType }) => {
+export default async ({ clientId, clientSecret, grantType } = {}) => {
+  required('PAYU_CLIENT_ID', clientId)
+  required('PAYU_CLIENT_SECRET', clientSecret)
+  required('grantType', grantType)
+  
   try {
     const response = await post(
       `${environment}/pl/standard/user/oauth/authorize`,

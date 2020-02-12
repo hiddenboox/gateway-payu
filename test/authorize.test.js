@@ -1,5 +1,6 @@
-import 'chai/register-should'
 import nock from 'nock'
+import assert from 'assert'
+import { expect } from 'chai'
 
 import { mockAuthorize } from './server'
 
@@ -25,5 +26,29 @@ describe('authorize function', () => {
     response.should.have.property('tokenType')
     response.should.have.property('expiresIn')
     response.should.have.property('grantType')
+  })
+
+  it('should return validation error on PAYU_CLIENT_ID when field is not provided', async () => {
+    try {
+      await authorize()
+    } catch (err) {
+      should.throw(() => { throw err }, assert.AssertionError, 'PAYU_CLIENT_ID should not be empty')
+    }
+  })
+
+  it('should return validation error on PAYU_CLIENT_SECRET when field is not provided', async () => {
+    try {
+      await authorize({ clientId: 2 })
+    } catch (err) {
+      should.throw(() => { throw err }, assert.AssertionError, 'PAYU_CLIENT_SECRET should not be empty')
+    }
+  })
+
+  it('should return validation error on grantType when field is not provided', async () => {
+    try {
+      await authorize({ clientId: 2, clientSecret: 2 })
+    } catch (err) {
+      should.throw(() => { throw err }, assert.AssertionError, 'grantType should not be empty')
+    }
   })
 })

@@ -1,7 +1,8 @@
 import querystring from 'querystring'
 import https from 'https'
 import { URL } from 'url'
-import { HttpVerb } from './consts'
+
+import { HttpVerb } from '../consts'
 
 export const request = ({ url, json, params, body, ...rest } = { method: 'GET', json: true }) => {
   const uri = new URL(`${url}${params ? '?' + querystring.stringify(params) : ''}`)
@@ -17,9 +18,9 @@ export const request = ({ url, json, params, body, ...rest } = { method: 'GET', 
         resolve(json ? JSON.parse(data) : data);
       });
     
-    }).on("error", (err) => {
+    }).on('error', (err) => {
       console.log(err)
-      reject("Error: " + err.message);
+      reject('Error: ' + err.message);
     })
 
     if (body) {
@@ -30,5 +31,5 @@ export const request = ({ url, json, params, body, ...rest } = { method: 'GET', 
   })
 }
 
-export const get = (url, params, options = {}) => request({ url, params, ...options, ...{ method: HttpVerb.GET } })
-export const post = (url, body, options = {}) => request({ url, body, ...options, ...{ method: HttpVerb.POST } })
+export const get = (url, params, options = {}) => request({ ...options, url, params, method: HttpVerb.GET })
+export const post = (url, body, options = {}) => request({ ...options, url, body, method: HttpVerb.POST })
