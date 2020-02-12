@@ -6,7 +6,7 @@ export default async ({ clientId, clientSecret, grantType } = {}) => {
   required('PAYU_CLIENT_ID', clientId)
   required('PAYU_CLIENT_SECRET', clientSecret)
   required('grantType', grantType)
-  
+
   try {
     const response = await post(
       `${environment}/pl/standard/user/oauth/authorize`,

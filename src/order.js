@@ -18,20 +18,19 @@ export default async ({ accessToken, payment, cart, buyer, products } = {}) => {
       {
         notifyUrl: PAYU_CLIENT_NOTIFY_SITE_URL,
         merchantPosId: PAYU_CLIENT_ID,
-        ...payment, 
-        ...cart, 
-        ...buyer, 
+        ...payment,
+        ...cart,
+        ...buyer,
         ...products
       },
       {
         json: true,
         headers: {
           [HEADERS.Authorization]: `Bearer ${accessToken}`,
-          [HEADERS.ContentType]: ContentType.JSON,
-        },
+          [HEADERS.ContentType]: ContentType.JSON
+        }
       }
     )
-
   } catch (response) {
     return response.error
   }
