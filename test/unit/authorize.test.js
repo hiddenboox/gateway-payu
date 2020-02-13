@@ -1,6 +1,5 @@
-import nock from 'nock'
 import assert from 'assert'
-import { expect } from 'chai'
+import nock from 'nock'
 
 import { mockAuthorize } from '../server'
 import { authorize, GrantType } from '../../src'

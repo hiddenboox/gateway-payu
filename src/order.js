@@ -1,5 +1,5 @@
 import { post } from './helpers/request'
-import { ContentType, HEADERS } from './consts'
+import { ContentType, HEADER } from './consts'
 import { environment } from './env'
 import { required } from './helpers/validation'
 
@@ -16,18 +16,18 @@ export default async ({ accessToken, payment, cart, buyer, products } = {}) => {
     return await post(
       `${environment}/api/v2_1/orders`,
       {
-        notifyUrl: PAYU_CLIENT_NOTIFY_SITE_URL,
-        merchantPosId: PAYU_CLIENT_ID,
-        ...payment,
-        ...cart,
-        ...buyer,
-        ...products
-      },
-      {
+        body: {
+          notifyUrl: PAYU_CLIENT_NOTIFY_SITE_URL,
+          merchantPosId: PAYU_CLIENT_ID,
+          ...payment,
+          ...cart,
+          ...buyer,
+          ...products
+        },
         json: true,
         headers: {
-          [HEADERS.Authorization]: `Bearer ${accessToken}`,
-          [HEADERS.ContentType]: ContentType.JSON
+          [HEADER.Authorization]: `Bearer ${accessToken}`,
+          [HEADER.ContentType]: ContentType.JSON
         }
       }
     )

@@ -21,7 +21,12 @@ export const mockOrder = () =>
       status: {
         statusCode: 'SUCCESS'
       },
-      redirectUri: '{url_do_przekierowania_na_stronę_podsumowania_płatności}',
+      redirectUri: '{redirect_url_after_successfully_payment}',
       orderId: 'WZHF5FFDRJ140731GUEST000P01',
-      extOrderId: '{twój_identyfikator_zamówienia}'
+      extOrderId: '{internal_order_id}'
     })
+
+export const mockFail = (status) =>
+    nock('https://localhost')
+      .get(`/${status}`)
+      .reply(status, 'Internal Server Error 500')

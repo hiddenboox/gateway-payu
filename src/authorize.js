@@ -1,3 +1,5 @@
+import Bounce from '@hapi/boom'
+
 import { post } from './helpers/request'
 import { environment } from './env'
 import { required } from './helpers/validation'
@@ -10,7 +12,6 @@ export default async ({ clientId, clientSecret, grantType } = {}) => {
   try {
     const response = await post(
       `${environment}/pl/standard/user/oauth/authorize`,
-      null,
       {
         json: true,
         params: {
@@ -27,7 +28,8 @@ export default async ({ clientId, clientSecret, grantType } = {}) => {
       expiresIn: response.expires_in,
       grantType: response.grant_type
     }
-  } catch (ex) {
-    console.error(ex.message)
+  } catch (err) {
+    Bounce.rethrow(err, 'system')
+    throw new Error(err.message)
   }
 }
