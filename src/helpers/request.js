@@ -22,14 +22,12 @@ export const request = (
         res.on('data', chunk => {
           data += chunk
         })
-        console.log(res.statusCode)
         res.on('end', () => {
           resolve(json ? JSON.parse(data) : data)
         })
       })
 
     req.on('error', err => {
-      console.log('err')
       reject(new Error(err.message))
     })
 
