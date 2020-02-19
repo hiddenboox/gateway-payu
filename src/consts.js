@@ -2,9 +2,10 @@ export const ContentType = {
   JSON: 'application/json'
 }
 
-export const HEADERS = {
+export const HEADER = {
   Authorization: 'Authorization',
-  'Content-Type': 'Content-Type'
+  ContentType: 'Content-Type',
+  ContentLength: 'Content-Length'
 }
 
 export const HttpVerb = {
