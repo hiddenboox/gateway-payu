@@ -43,7 +43,6 @@ describe('request', () => {
 
         try {
             const response = await get('https://localhost/500')
-            console.log(response)
         } catch (err) {
             should.throw(() => { throw err }, Error, 'adddad')
         }
