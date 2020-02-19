@@ -1,5 +1,3 @@
-import Bounce from '@hapi/boom'
-
 import { post } from './helpers/request'
 import { environment } from './env'
 import { required } from './helpers/validation'
@@ -29,7 +27,6 @@ export default async ({ clientId, clientSecret, grantType } = {}) => {
       grantType: response.grant_type
     }
   } catch (err) {
-    Bounce.rethrow(err, 'system')
     throw new Error(err.message)
   }
 }
